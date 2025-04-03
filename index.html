@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For The Love of My Life | Will You Be Mine?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .heart-beat { animation: heartbeat 1.5s infinite; }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        
+        .memory-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e0f7fa 100%);
+        }
+        .memory-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .proposal-box {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            transform: rotate(-2deg);
+        }
+        .proposal-box:hover { transform: rotate(1deg) scale(1.02); }
+        
+        .polaroid {
+            background: white;
+            padding: 15px 15px 60px 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+        }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        
+        @keyframes float-up {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+        
+        .animate-float-up {
+            animation: float-up 2s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 to-purple-50 min-h-screen font-poppins">
+    <!-- Floating Hearts Background -->
+    <div class="fixed inset-0 overflow-hidden z-0">
+        <div class="absolute top-10 left-1/4 text-pink-300 text-4xl float">❤️</div>
+        <div class="absolute top-1/3 right-1/4 text-purple-300 text-5xl float" style="animation-delay: 0.5s;">❤️</div>
+        <div class="absolute bottom-1/4 left-1/5 text-red-300 text-6xl float" style="animation-delay: 1s;">❤️</div>
+        <div class="absolute top-1/2 right-1/5 text-pink-200 text-3xl float" style="animation-delay: 1.5s;">❤️</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 max-w-4xl relative z-10">
+        <!-- Animated Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-dancing text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-4 heart-beat">
+                To The Love of My Life
+            </h1>
+            <p class="text-xl text-purple-600">Every moment with you feels like magic ✨</p>
+        </header>
+
+        <!-- Love Meter -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-12 text-center backdrop-blur-sm bg-opacity-70">
+            <h2 class="text-3xl font-dancing text-pink-600 mb-4">How much do I love you?</h2>
+            <div class="flex items-center justify-center mb-4">
+                <input type="range" id="loveMeter" min="0" max="100" value="0" 
+                       class="w-full max-w-md h-3 bg-gradient-to-r from-pink-200 via-pink-400 to-purple-600 rounded-full appearance-none cursor-pointer">
+            </div>
+            <p id="loveMessage" class="text-lg text-gray-600">Slide to discover...</p>
+            <div id="lovePercentage" class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mt-2">0%</div>
+        </div>
+
+        <!-- Our Story Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-dancing text-center text-pink-600 mb-8">Our Beautiful Journey</h2>
+            
+            <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+                <!-- Memory 1 -->
+                <div class="memory-card rounded-2xl p-6 shadow-md cursor-pointer" onclick="showMemory(1)">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl mb-3">💑</div>
+                        <h3 class="text-xl font-dancing text-pink-600 mb-2">When We First Met</h3>
+                    </div>
+                    <p class="text-gray-700">That magical moment when our eyes first met and my heart knew...</p>
+                    <div class="text-pink-400 text-sm mt-3">Click to read more</div>
+                </div>
+                
+                <!-- Memory 2 -->
+                <div class="memory-card rounded-2xl p-6 shadow-md cursor-pointer" onclick="showMemory(2)">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl mb-3">😂</div>
+                        <h3 class="text-xl font-dancing text-pink-600 mb-2">Our First Laugh</h3>
+                    </div>
+                    <p class="text-gray-700">Remember when we couldn't stop laughing at...</p>
+                    <div class="text-pink-400 text-sm mt-3">Click to read more</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reasons I Love You -->
+        <div class="mb-12 bg-white bg-opacity-70 rounded-2xl shadow-lg p-6 backdrop-blur-sm">
+            <h2 class="text-3xl font-dancing text-center text-pink-600 mb-6">10 Reasons I Adore You</h2>
+            <ol class="grid grid-cols-1 md:grid-cols-2 gap-4 list-decimal list-inside">
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Your beautiful smile that lights up my world</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">The way you make me laugh like no one else</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Your kindness that touches everyone around you</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">How you understand me without words</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Your intelligence that inspires me daily</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">The cute way you [personal habit]</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Your passion for [her interest]</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">How safe I feel when I'm with you</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Your beautiful [physical feature]</li>
+                <li class="p-2 hover:bg-pink-50 rounded-lg">Simply because you're YOU</li>
+            </ol>
+        </div>
+
+        <!-- Interactive Jokes Section -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-12 text-center">
+            <h2 class="text-3xl font-dancing text-pink-600 mb-6">Try to Make Me Blush! 😳</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Joke Card 1 -->
+                <div class="joke-card bg-pink-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all" onclick="revealJoke(1)">
+                    <div class="text-4xl mb-4">🤔</div>
+                    <p class="text-gray-700 font-medium">Tap to reveal joke...</p>
+                    <p id="joke1" class="hidden text-pink-600 mt-3">"Are you Wi-Fi? Because I'm feeling a connection!"</p>
+                </div>
+                
+                <!-- Joke Card 2 -->
+                <div class="joke-card bg-pink-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all" onclick="revealJoke(2)">
+                    <div class="text-4xl mb-4">🍕</div>
+                    <p class="text-gray-700 font-medium">Tap to reveal joke...</p>
+                    <p id="joke2" class="hidden text-pink-600 mt-3">"I was going to tell you a pizza joke... but it's too cheesy!"</p>
+                </div>
+            </div>
+            
+            <button id="randomJokeBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full transition">
+                Generate Random Joke 🔄
+            </button>
+        </div>
+
+        <!-- The Big Question -->
+        <div id="proposal" class="proposal-box rounded-2xl shadow-2xl p-8 mb-12 text-center text-white transform transition-all duration-300">
+            <div class="text-6xl mb-6">💍</div>
+            <h2 class="text-4xl font-dancing mb-4">My Dearest Love</h2>
+            <p class="text-xl mb-6">You've made my life more beautiful than I ever dreamed possible...</p>
+            <p class="text-2xl font-semibold mb-8">Will you make me the happiest person and be mine forever?</p>
+            
+            <div class="flex justify-center gap-6">
+                <button id="yesBtn" class="bg-white text-pink-600 font-bold py-3 px-8 rounded-full text-xl hover:bg-green-100 transition duration-300 shadow-lg">
+                    YES! ❤️
+                </button>
+                <button id="noBtn" class="bg-white text-pink-600 font-bold py-3 px-8 rounded-full text-xl hover:bg-pink-100 transition duration-300 shadow-lg">
+                    No
+                </button>
+            </div>
+        </div>
+
+        <!-- Secret Message (appears after saying yes) -->
+        <div id="secretMessage" class="hidden bg-gradient-to-r from-purple-100 to-pink-100 border-l-8 border-pink-500 p-6 mb-12 rounded-r-2xl">
+            <h2 class="text-3xl font-dancing text-pink-600 mb-4">My Promise to You</h2>
+            <p class="text-gray-700 mb-4">I promise to cherish you every single day, to be your partner in every adventure, and to love you more with each passing moment.</p>
+            <p class="text-gray-700">You're my today and all of my tomorrows. 💕</p>
+        </div>
+
+        <!-- Final Love Note -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center backdrop-blur-sm bg-opacity-70">
+            <h2 class="text-3xl font-dancing text-pink-600 mb-6">Forever Yours</h2>
+            <p class="text-gray-700 mb-4">No matter where life takes us, I'll always choose you, today and every day.</p>
+            <p class="text-xl font-dancing text-pink-600">With all my love,</p>
+            <p class="text-xl font-dancing text-pink-600">[Your Name]</p>
+            <div class="text-4xl mt-4">💘</div>
+        </div>
+    </div>
+
+    <!-- Floating Compliment Button -->
+    <button id="floatingComplimentBtn" class="fixed bottom-6 right-6 bg-pink-500 text-white w-14 h-14 rounded-full shadow-xl text-2xl hover:bg-pink-600 transition z-50">
+        💝
+    </button>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-50 overflow-hidden hidden"></div>
+
+    <script>
+        // Jokes Data
+        const jokes = [
+            "I Googled 'how to impress my girlfriend'... and you were the top result!",
+            "If you were a vegetable, you'd be a cute-cumber!",
+            "Do you have a Band-Aid? I just scraped my knee falling for you!",
+            "Are you a time traveler? Because I see you in my future!",
+            "I must be a snowflake because I've fallen for you!",
+            "Are you Wi-Fi? Because I'm feeling a connection!",
+            "I was going to tell you a pizza joke... but it's too cheesy!",
+            "If you were a fruit, you'd be a fine-apple!",
+            "I'm not a photographer, but I can picture us together!",
+            "We're not socks, but we'd make the perfect pair!"
+        ];
+
+        // Compliments Data
+        const compliments = [
+            "Your smile is my favorite thing in the world!",
+            "You're more beautiful than a sunset!",
+            "I fall in love with you more every day.",
+            "How are you so perfect?",
+            "Just thinking about you makes me smile.",
+            "You're the reason I believe in love.",
+            "Your laugh is my favorite sound.",
+            "You make my heart skip a beat.",
+            "I'm the luckiest person to have you.",
+            "You're my dream come true."
+        ];
+
+        // Love Meter
+        const loveMeter = document.getElementById('loveMeter');
+        const loveMessage = document.getElementById('loveMessage');
+        const lovePercentage = document.getElementById('lovePercentage');
+        
+        const loveMessages = [
+            "I kinda like you...",
+            "Okay, I really like you!",
+            "I think I'm falling for you!",
+            "I'm definitely in love!",
+            "I LOVE YOU SO MUCH!",
+            "I'M OBSESSED WITH YOU!",
+            "YOU'RE MY WHOLE WORLD!",
+            "INFINITY × INFINITY! 💞"
+        ];
+        
+        loveMeter.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            const messageIndex = Math.min(Math.floor(value / 15), loveMessages.length - 1);
+            loveMessage.textContent = loveMessages[messageIndex];
+            lovePercentage.textContent = `${value}%`;
+            
+            // Change color based on value
+            const hue = value * 3.6; // Convert percentage to hue rotation
+            lovePercentage.style.filter = `hue-rotate(${hue}deg)`;
+        });
+
+        // Jokes Interaction
+        function revealJoke(id) {
+            const jokeElement = document.getElementById(`joke${id}`);
+            jokeElement.classList.toggle('hidden');
+            jokeElement.parentElement.classList.add('bg-pink-100');
+        }
+
+        document.getElementById('randomJokeBtn').addEventListener('click', function() {
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            
+            // Create a notification bubble
+            const bubble = document.createElement('div');
+            bubble.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-white text-pink-600 px-6 py-3 rounded-full shadow-lg animate-float-up';
+            bubble.textContent = randomJoke;
+            document.body.appendChild(bubble);
+            
+            // Remove after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, 3000);
+        });
+
+        // Proposal
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const secretMessage = document.getElementById('secretMessage');
+        const confettiContainer = document.getElementById('confettiContainer');
+        const proposalSection = document.getElementById('proposal');
+
+        yesBtn.addEventListener('click', function() {
+            secretMessage.classList.remove('hidden');
+            confettiContainer.style.display = 'block';
+            createConfetti();
+            
+            // Change proposal box
+            proposalSection.innerHTML = `
+                <div class="text-6xl mb-6 animate-bounce">🎉</div>
+                <h2 class="text-4xl font-dancing mb-4">YES! YES! YES!</h2>
+                <p class="text-xl mb-6">This is the happiest moment of my life! 💖</p>
+            `;
+            proposalSection.style.background = 'linear-gradient(to right, #4ade80, #22d3ee)';
+        });
+
+        noBtn.addEventListener('mouseover', function() {
+            // Move the NO button randomly
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            this.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Confetti
+        function createConfetti() {
+            const colors = ['#ff0000', '#ff00ff', '#00ffff', '#ffff00', '#00ff00'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.opacity = Math.random() + 0.5;
+                
+                // Create unique animation for each confetti
+                const animationDuration = Math.random() * 3 + 2;
+                const animationName = `fall-${i}`;
+                
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes ${animationName} {
+                        to {
+                            transform: translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                confetti.style.animation = `${animationName} ${animationDuration}s linear forwards`;
+                confettiContainer.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                    style.remove();
+                }, animationDuration * 1000);
+            }
+        }
+
+        // Floating Compliment Button
+        document.getElementById('floatingComplimentBtn').addEventListener('click', function() {
+            const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+            
+            // Create a floating compliment bubble
+            const bubble = document.createElement('div');
+            bubble.className = 'fixed bottom-20 right-6 bg-white text-pink-600 px-4 py-2 rounded-lg shadow-lg animate-float-up';
+            bubble.textContent = randomCompliment;
+            document.body.appendChild(bubble);
+            
+            // Remove after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, 3000);
+        });
+
+        // Memory Modal Functions
+        const memoryModal = document.getElementById('memoryModal');
+        const modalContent = document.getElementById('modalContent');
+        
+        const memories = [
+            {
+                title: "When We First Met",
+                content: `
+                    <h3 class="text-2xl font-dancing text-pink-600 mb-4">The Day My Life Changed</h3>
+                    <p class="text-gray-700 mb-4">I remember it like it was yesterday... [describe how you met].</p>
+                    <p class="text-gray-700 mb-4">From that moment, I knew there was something special about you. Your [describe what caught your attention] made my heart skip a beat.</p>
+                    <div class="bg-pink-50 p-4 rounded-lg border border-pink-200">
+                        <p class="italic text-pink-600">"I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more."</p>
+                    </div>
+                    <div class="text-center text-4xl mt-4">💘</div>
+                `,
+                date: "Our Beginning"
+            },
+            {
+                title: "Our First Laugh",
+                content: `
+                    <h3 class="text-2xl font-dancing text-pink-600 mb-4">When We Couldn't Stop Laughing</h3>
+                    <p class="text-gray-700 mb-4">Remember when [describe funny incident]? We laughed until our stomachs hurt!</p>
+                    <p class="text-gray-700 mb-4">That's when I realized how perfectly we fit together. Your laugh is my favorite sound in the world.</p>
+                    <div class="bg-pink-50 p-4 rounded-lg border border-pink-200">
+                        <p class="italic text-pink-600">"We don't laugh because we're happy - we're happy because we laugh." And with you, I'm the happiest.</p>
+                    </div>
+                    <div class="text-center text-4xl mt-4">😂</div>
+                `,
+                date: "A Joyful Memory"
+            }
+        ];
+        
+        function showMemory(index) {
+            const memory = memories[index - 1];
+            
+            // Create memory popup
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-md w-full p-6 relative">
+                    <button onclick="this.parentElement.parentElement.remove()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
+                        ✕
+                    </button>
+                    ${memory.content}
+                    <div class="mt-6 text-sm text-gray-500 text-center">${memory.date}</div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+    </script>
+</body>
+</html>
